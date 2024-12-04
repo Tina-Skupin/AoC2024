@@ -40,6 +40,10 @@ func main() {
 	// Call the function to find "xmas"
 	count := findXMAS(formatted)
 	fmt.Printf("Found 'xmas' %d times.\n", count)
+
+	// Call the other ufnction to find Vin Diesel
+	xanderCount := findXander(formatted)
+	fmt.Printf("Found 'Vin diesel' %d times.\n", xanderCount)
 }
 
 // Helper function to add quotes to each element in a string slice
@@ -91,4 +95,26 @@ func findXMAS(grid [][]string) int {
 		}
 	}
 	return count
+}
+
+func findXander(grid [][]string) int {
+	xanderCount := 0
+	for i := range grid {
+		for j := range grid[i] {
+			// diagonal forward left to right
+			if i <= len(grid)-3 && j <= len(grid[i])-3 && grid[i][j] == "M" && grid[i+1][j+1] == "A" && grid[i+2][j+2] == "S" && grid[i+2][j] == "M" && grid[i][j+2] == "S"{
+				xanderCount++
+			}
+			if i <= len(grid)-3 && j <= len(grid[i])-3 && grid[i][j] == "M" && grid[i+1][j+1] == "A" && grid[i+2][j+2] == "S" && grid[i+2][j] == "S" && grid[i][j+2] == "M"{
+				xanderCount++
+			}
+			if i <= len(grid)-3 && j <= len(grid[i])-3 && grid[i][j] == "S" && grid[i+1][j+1] == "A" && grid[i+2][j+2] == "M" && grid[i+2][j] == "M" && grid[i][j+2] == "S"{
+				xanderCount++
+			}
+			if i <= len(grid)-3 && j <= len(grid[i])-3 && grid[i][j] == "S" && grid[i+1][j+1] == "A" && grid[i+2][j+2] == "M" && grid[i+2][j] == "S" && grid[i][j+2] == "M"{
+				xanderCount++
+			}
+		}
+	}
+	return xanderCount
 }
