@@ -51,8 +51,44 @@ func quote(row []string) []string {
 	return quotedRow
 }
 
-// Place your findXMAS function here
 func findXMAS(grid [][]string) int {
-	// Implement your logic to find the word "xmas"
-	return 0 // replace this with your searching logic
+	count := 0
+	for i := range grid {
+		for j := range grid[i] {
+			// Check right
+			if j <= len(grid[i])-4 && grid[i][j] == "X" && grid[i][j+1] == "M" && grid[i][j+2] == "A" && grid[i][j+3] == "S" {
+				count++
+			}
+			// check backwards
+			if j <= len(grid[i])-4 && grid[i][j] == "S" && grid[i][j+1] == "A" && grid[i][j+2] == "M" && grid[i][j+3] == "X" {
+				count++
+			}
+			// Check down
+			if i <= len(grid)-4 && grid[i][j] == "X" && grid[i+1][j] == "M" && grid[i+2][j] == "A" && grid[i+3][j] == "S"{
+				count++
+			}
+			// Check down backwards
+			if i <= len(grid)-4 && grid[i][j] == "S" && grid[i+1][j] == "A" && grid[i+2][j] == "M" && grid[i+3][j] == "X"{
+				count++
+			}
+			// diagonal forward left to right
+			if i <= len(grid)-4 && j <= len(grid[i])-4 && grid[i][j] == "X" && grid[i+1][j+1] == "M" && grid[i+2][j+2] == "A" && grid[i+3][j+3] == "S"{
+				count++
+			}
+			// diagonal backward left to right
+			if i <= len(grid)-4 && j <= len(grid[i])-4 && grid[i][j] == "S" && grid[i+1][j+1] == "A" && grid[i+2][j+2] == "M" && grid[i+3][j+3] == "X"{
+				count++
+			}
+			// diagonal backward right to left
+			if i <= len(grid)-4 && j <= len(grid[i])-4 && grid[i+3][j] == "S" && grid[i+2][j+1] == "A" && grid[i+1][j+2] == "M" && grid[i][j+3] == "X"{
+				count++
+			}
+			// diagonal forward right to left
+			if i <= len(grid)-4 && j <= len(grid[i])-4 && grid[i+3][j] == "X" && grid[i+2][j+1] == "M" && grid[i+1][j+2] == "A" && grid[i][j+3] == "S"{
+				count++
+			}
+
+		}
+	}
+	return count
 }
